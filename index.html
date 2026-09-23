@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070b14"><title>Aerion</title>
+<link rel="stylesheet" href="style.css?v=7.1">
+</head>
+<body>
+<div id="loader" class="loader">
+  <div id="loaderGameBg" class="loader-bg"></div><div class="loader-noise"></div>
+  <div class="loader-core"><div class="loader-orbit orbit-a"></div><div class="loader-orbit orbit-b"></div>
+    <div class="loader-character"><img id="loaderImage" alt="" hidden><video id="loaderVideo" muted loop playsinline autoplay hidden></video><div id="loaderFallback" class="loader-avatar">A</div></div>
+    <div class="loader-brand">AERION</div><div class="loader-status"><span id="loadingTip">Menyiapkan profil Aerion...</span><b id="loadingPercent">0%</b></div>
+    <div class="loader-track"><i id="loadingProgress"></i></div>
+  </div>
+</div>
+
+<div id="app" class="app app-hidden">
+  <div id="background" class="background default"></div><video id="backgroundVideo" class="background-video" muted loop playsinline hidden></video><div id="background-shade" class="background-shade"></div>
+  <header class="floating-bar"><div class="brand-chip"><span class="brand-dot"></span><span id="footerName">AERION</span></div><div class="header-actions"><button id="musicButton" class="icon-button" aria-label="Musik">♪</button><button id="adminButton" class="icon-button admin-trigger" aria-label="Admin">⌘</button></div></header>
+  <main class="page-shell">
+    <section class="hero enter-item">
+      <div class="hero-media"><div class="hero-glow"></div><div class="avatar"><img id="avatarImage" alt="" hidden><div id="avatarFallback" class="avatar-fallback">A</div></div><span class="verified-pill">✦ ONLINE</span></div>
+      <div class="hero-copy"><span class="eyebrow">PERSONAL SPACE</span><h1 id="name">Aerion</h1><p id="handle">@aerion</p><p id="bio">Welcome to my little corner on the internet.</p></div>
+    </section>
+    <section class="now-playing enter-item"><div class="np-art"><img id="showImage" alt="" hidden><div id="showFallback">AERION</div></div><div class="np-info"><small id="showLabel">NOW PLAYING</small><strong id="showTitle">My favorite things</strong><div class="bars"><i></i><i></i><i></i><i></i><i></i></div><div class="timeline"><span></span></div></div></section>
+    <section class="section-head enter-item"><div><small>QUICK ACCESS</small><h2>My spaces</h2></div><span class="section-mark">↗</span></section>
+    <section id="links" class="links"></section>
+    <section id="skills" class="skills-section" hidden><div class="section-head"><div><small>TOOLS & PROJECTS</small><h2 id="skillsTitle">SKILLS</h2></div></div><div id="skillGrid" class="skill-grid"></div></section>
+    <section id="tiktokSection" class="tiktok-section" hidden><div class="section-head"><div><small>SOCIAL</small><h2 id="tiktokTitle">TikTok Terbaru</h2></div></div><div id="tiktokEmbedWrap"></div><button id="tiktokPromoButton" class="social-pulse">Open TikTok</button></section>
+  </main>
+</div>
+
+<audio id="music" preload="metadata"></audio>
+<div id="tiktokModal" class="hidden-modal" aria-hidden="true"><div class="modal-window"><button id="tiktokClose">×</button><h3 id="tiktokModalTitle">TikTok</h3><div id="tiktokModalBody"></div></div></div>
+<div id="tiktokAdCard" hidden></div><div id="tiktokPromoMini" hidden></div><span id="tiktokPromoKicker" hidden></span><button id="tiktokPromoClose" hidden></button><span id="tiktokUsernameLabel" hidden></span>
+
+<div id="editorBackdrop" class="editor-backdrop"></div>
+<div id="pinModal" class="modal"><div class="pin-card"><div class="pin-icon">⌘</div><small>PRIVATE CONTROL</small><h2>Unlock Admin</h2><p>Masukkan PIN untuk mengatur tampilan publik Aerion.</p><input id="pinInput" type="password" inputmode="numeric" placeholder="PIN admin"><div class="pin-actions"><button id="pinCancel" class="ghost-btn">Batal</button><button id="pinOpen" class="accent-btn">Buka Panel</button></div><small id="pinMessage" class="error-text"></small></div></div>
+
+<aside id="editor" class="editor">
+  <header class="editor-header"><div><small>CONTROL CENTER</small><h2>Admin Panel</h2><p>Atur seluruh halaman tanpa pindah halaman.</p></div><button id="editorClose" class="close-editor">×</button></header>
+  <div class="admin-overview"><div><span>PUBLIC SITE</span><b>Live configuration</b></div><div class="live-dot">● Live</div></div>
+  <nav class="admin-grid-nav">
+    <button class="tab active" data-page="pageProfile"><b>01</b><span>Profil</span><small>Identitas & foto</small></button>
+    <button class="tab" data-page="pageLinks"><b>02</b><span>Link & Saluran</span><small>Menu & tujuan</small></button>
+    <button class="tab" data-page="pageVisual"><b>03</b><span>Visual</span><small>Background & loading</small></button>
+    <button class="tab" data-page="pageMusic"><b>04</b><span>Musik</span><small>Playlist & volume</small></button>
+    <button class="tab" data-page="pageButtons"><b>05</b><span>Tombol</span><small>Glass & bentuk</small></button>
+    <button class="tab" data-page="pageSkills"><b>06</b><span>Project</span><small>Skills & project</small></button>
+    <button class="tab" data-page="pageTikTok"><b>07</b><span>TikTok</span><small>Social section</small></button>
+  </nav>
+  <div class="editor-body">
+    <section id="pageProfile" class="editor-page active"><div class="page-title"><span>PROFILE</span><h3>Bangun identitasmu</h3></div>
+      <label>Nama<input id="inputName"></label><label>Username<input id="inputHandle"></label><label>Bio<textarea id="inputBio"></textarea></label>
+      <label>Foto profil<input id="inputAvatar" type="file" accept="image/*"></label><label>Ukuran foto profil <b id="avatarSizeValue"></b><input id="inputAvatarSize" type="range" min="64" max="150"></label><label>Jarak profil <b id="profileTopValue"></b><input id="inputProfileTop" type="range" min="0" max="90"></label>
+      <label>Bentuk foto<select id="inputAvatarShape"><option value="circle">Bulat</option><option value="rounded">Rounded</option><option value="soft">Soft</option></select></label><button id="clearAvatar" class="danger-lite">Hapus foto</button>
+      <div class="subcard"><b>Mini player</b><label>Judul<input id="inputShowTitle"></label><label>Label<input id="inputShowLabel"></label><label>Cover<input id="inputShowImage" type="file" accept="image/*"></label><div id="showPreview" class="upload-preview">Belum ada gambar</div><button id="clearShowImage" class="danger-lite">Hapus cover</button></div>
+    </section>
+    <section id="pageLinks" class="editor-page"><div class="page-title"><span>LINKS & CHANNELS</span><h3>Atur tombol sesukamu</h3></div><p class="note">Buat link tunggal atau menu Saluran yang membuka beberapa tujuan. Urutan mengikuti tampilan publik.</p><div id="linkEditor"></div><div class="two-actions"><button id="addLink" class="accent-btn">＋ Link</button><button id="addChannelMenu" class="ghost-btn">＋ Saluran</button></div></section>
+    <section id="pageVisual" class="editor-page"><div class="page-title"><span>VISUAL ENGINE</span><h3>Atur suasana halaman</h3></div>
+      <label>Background gambar / GIF<input id="inputBackground" type="file" accept="image/*"></label><label>Background video<input id="inputBackgroundVideo" type="file" accept="video/mp4,video/webm"></label><div id="backgroundPreview" class="upload-preview">Belum ada background</div><button id="clearBackground" class="danger-lite">Gunakan default</button>
+      <div class="control-grid"><label>Posisi<select id="inputBgPosition"><option value="center center">Tengah</option><option value="center top">Atas</option><option value="center bottom">Bawah</option><option value="left center">Kiri</option><option value="right center">Kanan</option></select></label><label>Ukuran<select id="inputBgSize"><option value="cover">Cover</option><option value="contain">Contain</option><option value="100% auto">Lebar</option><option value="auto 100%">Tinggi</option></select></label></div>
+      <label>Blur <b id="bgBlurValue"></b><input id="inputBgBlur" type="range" min="0" max="20"></label><label>Overlay gelap <b id="bgDarknessValue"></b><input id="inputBgDarkness" type="range" min="0" max="85"></label><label>Gerakan<select id="inputBgMotion"><option value="none">Diam</option><option value="float">Float</option><option value="pan">Pan</option><option value="zoom">Zoom</option></select></label>
+      <div class="subcard"><b>Loading screen</b><label>Media loading<input id="inputLoaderImage" type="file" accept="image/*,video/mp4,video/webm"></label><div id="loaderPreview" class="upload-preview">Belum ada media</div><button id="clearLoaderImage" class="danger-lite">Hapus media</button><label>Background loading<input id="inputLoaderBackground" type="file" accept="image/*"></label><div id="loaderBackgroundPreview" class="upload-preview">Belum ada background</div><button id="clearLoaderBackground" class="danger-lite">Gunakan default</button><label>Durasi <b id="durationValue"></b><input id="inputDuration" type="range" min="1800" max="9000"></label></div>
+      <div class="control-grid"><label>Accent<input id="inputAccent" type="color"></label><label>Accent 2<input id="inputAccent2" type="color"></label></div>
+    </section>
+    <section id="pageMusic" class="editor-page"><div class="page-title"><span>AUDIO LAB</span><h3>Playlist & suasana</h3></div><label>Pilih musik<input id="inputMusic" type="file" accept="audio/*" multiple></label><button id="addMusicFiles" class="accent-btn">＋ Tambahkan ke playlist</button><div id="musicStatus" class="upload-preview">Belum ada musik</div><div id="musicTrackEditor" class="music-track-editor"></div><button id="clearMusic" class="danger-lite">Hapus semua musik</button><label>Volume <b id="volumeValue"></b><input id="inputVolume" type="range" min="0" max="1" step="0.01"></label><label>Mode<select id="inputMusicMode"><option value="afterload">Setelah loading</option><option value="firsttap">Tap pertama</option><option value="manual">Manual</option></select></label><div id="musicDebug" class="debug-box">Status musik: belum ada</div></section>
+    <section id="pageButtons" class="editor-page"><div class="page-title"><span>INTERACTION</span><h3>Bentuk tombol</h3></div><label>Style<select id="inputButtonStyle"><option value="ios">Aurora Glass</option><option value="glass">Deep Glass</option><option value="solid">Gradient</option><option value="minimal">Minimal</option></select></label><label>Radius <b id="buttonRadiusValue"></b><input id="inputButtonRadius" type="range" min="10" max="40"></label><label>Transparansi <b id="buttonGlassValue"></b><input id="inputButtonGlass" type="range" min="0.05" max="0.35" step="0.01"></label></section>
+    <section id="pageSkills" class="editor-page"><div class="page-title"><span>PROJECTS</span><h3>Showcase karya</h3></div><label class="switch-row">Tampilkan section <input id="inputShowSkills" type="checkbox"></label><label>Judul<input id="inputSkillsTitle"></label><div id="skillEditor"></div><button id="addSkill" class="accent-btn full">＋ Tambah Project / Skill</button></section>
+    <section id="pageTikTok" class="editor-page"><div class="page-title"><span>SOCIAL</span><h3>TikTok section</h3></div><label class="switch-row">Aktifkan TikTok <input id="inputTikTokEnabled" type="checkbox"></label><label>Judul<input id="inputTikTokTitle"></label><label>Username<input id="inputTikTokUsername"></label><div class="control-grid"><label>Posisi<select id="inputTikTokPosition"><option value="bottom-right">Bawah kanan</option><option value="bottom-left">Bawah kiri</option><option value="top-right">Atas kanan</option><option value="top-left">Atas kiri</option></select></label><label>Ukuran<select id="inputTikTokSize"><option value="compact">Compact</option><option value="large">Large</option></select></label></div><label class="switch-row">Floating <input id="inputTikTokFloat" type="checkbox"></label><label class="switch-row">Rotasi label <input id="inputTikTokRotate" type="checkbox"></label></section>
+  </div>
+  <footer class="editor-footer"><button id="resetButton" class="danger-lite">Reset</button><button id="changePin" class="ghost-btn">Ganti PIN</button><button id="saveButton" class="accent-btn save-action">Simpan Public</button></footer>
+</aside>
+<script src="script.js?v=7.1"></script>
+</body></html>

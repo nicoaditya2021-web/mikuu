@@ -1,0 +1,6 @@
+{
+  "name": "aerion-linktree-netlify",
+  "private": true,
+  "type": "module",
+  "dependencies": { "@netlify/blobs": "^10.3.0" }
+}

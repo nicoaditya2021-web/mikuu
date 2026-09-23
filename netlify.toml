@@ -1,0 +1,13 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/site-data"
+  to = "/.netlify/functions/site-data"
+  status = 200
+
+[[redirects]]
+  from = "/api/site-media"
+  to = "/.netlify/functions/site-media"
+  status = 200
